@@ -1,0 +1,37 @@
+# Byte-compiled / optimized / DLL files
+*.pyc
+*.pyo
+*.pyd
+__pycache__/
+
+# C extensions
+*.so
+
+# Distribution / packaging
+.eggs
+dist
+build
+develop-eggs
+eggs
+
+# Pip
+.installed.cfg
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Unit test / coverage reports
+*.log
+coverage.xml
+*.cover
+.tox
+.coverage
+.cache
+
+# Django
+local_settings.py
+db.sqlite3
+.DS_Store
+
+# IDE directories
+.idea
+.vscode
