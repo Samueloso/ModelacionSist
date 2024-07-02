@@ -3,7 +3,7 @@
 import networkx as nx
 import matplotlib.pyplot as plt
 
-airports = ["CCS", "AUA", "CUR", "BON", "SXM", "SDQ", "POS", "BGI", "PTP", "FDF", "SBH"]
+airports = ["CCS", "AUA", "BON", "CUR", "SXM", "SDQ", "SBH", "POS", "BGI", "FDF", "PTP"]
 
 visa_required = {"AUA", "BON", "CUR", "SXM", "SDQ"}
 
@@ -17,12 +17,23 @@ def read_adjacency_matrix(filename):
 
 def create_graph(matrix):
     graph = {}
+    
     for i in range(len(matrix)):
         graph[airports[i]] = {}
         for j in range(len(matrix[i])):
             if matrix[i][j] != 0:
                 graph[airports[i]][airports[j]] = matrix[i][j]
-    return graph
+
+    graph_aux = {}
+
+    for i in range(len(matrix)):
+        if i not in [1,2,3,4,5]:
+            graph_aux[airports[i]] = {}
+            for j in range(len(matrix[i])):
+                if matrix[i][j] != 0 and j not in [1,2,3,4,5]:
+                    graph_aux[airports[i]][airports[j]] = matrix[i][j]
+
+    return graph, graph_aux
 
 def mostrar_grafo(graph, path=None):
     G = nx.DiGraph()
@@ -31,7 +42,7 @@ def mostrar_grafo(graph, path=None):
             G.add_edge(node, neighbor, weight=cost)
 
     pos = nx.spring_layout(G)
-    nx.draw(G, pos, with_labels=True, node_size=3000, node_color="skyblue", font_size=10, font_weight="bold", arrows=True)
+    nx.draw(G, pos, with_labels=True, node_size=800, node_color="skyblue", font_size=10, font_weight="bold", arrows=True)
     edge_labels = nx.get_edge_attributes(G, 'weight')
     nx.draw_networkx_edge_labels(G, pos, edge_labels=edge_labels)
 

@@ -7,9 +7,9 @@ filename = "matriz.txt"
 
 # Leer y crear el grafo
 matrix = read_adjacency_matrix(filename)
-graph = create_graph(matrix)
+graph, graph_aux = create_graph(matrix)
 
 # Crear la interfaz gráfica
 root = tk.Tk()
-app = RouteFinderApp(root, graph)
+app = RouteFinderApp(root, graph, graph_aux)
 root.mainloop()
