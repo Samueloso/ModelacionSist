@@ -84,21 +84,3 @@ def mostrar_grafo(graph):
     edge_labels = nx.get_edge_attributes(G, 'weight')
     nx.draw_networkx_edge_labels(G, pos, edge_labels=edge_labels)
     plt.show()
-
-def buscar_ruta():
-    start = entry_start.get()
-    end = entry_end.get()
-    tiene_visa = bool_var.get()
-    
-    if start not in graph or end not in graph:
-        messagebox.showerror("Error", "Aeropuertos inválidos. Por favor ingrese aeropuertos válidos.")
-        return
-    
-    ruta_mas_barata = dijkstra(graph, start, end, tiene_visa)
-    
-    if ruta_mas_barata:
-        cost, path = ruta_mas_barata
-        stops = count_stops(path)
-        result_text.set(f"Ruta más barata: {path} con costo de {cost}\nNúmero de escalas: {stops}")
-    else:
-        result_text.set("No se puede encontrar una ruta debido a restricciones de visa o datos inválidos.")
